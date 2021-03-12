@@ -9,7 +9,6 @@
 // ==/UserScript==
 let suggested="Suggested for You";
 let sponsored="Sponsored";
-let spons="SSaepnatSommnpogdsnosroeredtdt";
 
 window.addEventListener('scroll', () => {
     setTimeout(hideAds);
@@ -20,11 +19,11 @@ function hideAds(){
     let units=feed.querySelectorAll(`[data-pagelet^="FeedUnit"]`);
     for(let u of units){
         //let label=u.querySelector(`[aria-label=${sponsored}]`);
-        let label=u.querySelector("span span a");
+        let label=u.querySelectorAll("span span a span span")[1]?.innerText.replace(/\s/g,'');
         let button=u.querySelector(`[role=button]`);
         let inner=u.innerText;
         //(label && label.innerText.length)
-        if (inner.includes(suggested) || (label.innerText.replace(/\s/g,'')==spons) || (button.innerText.includes(sponsored)))
+        if (inner.includes(suggested) || label?.length==30 || (button.innerText.includes(sponsored)))
         {
             u.remove();
             //u.style.opacity=0.1;
