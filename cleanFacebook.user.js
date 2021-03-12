@@ -20,11 +20,11 @@ function hideAds(){
     let units=feed.querySelectorAll(`[data-pagelet^="FeedUnit"]`);
     for(let u of units){
         //let label=u.querySelector(`[aria-label=${sponsored}]`);
-        let labels=u.querySelectorAll("span a");
+        let label=u.querySelector("span span a");
         let button=u.querySelector(`[role=button]`);
         let inner=u.innerText;
         //(label && label.innerText.length)
-        if (inner.includes(suggested) || (labels[labels.length-1].innerText.replace(/\s/g,'')==spons) || (button.innerText.includes(sponsored)))
+        if (inner.includes(suggested) || (label.innerText.replace(/\s/g,'')==spons) || (button.innerText.includes(sponsored)))
         {
             u.remove();
             //u.style.opacity=0.1;
