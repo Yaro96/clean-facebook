@@ -9,6 +9,7 @@
 // ==/UserScript==
 let suggested="Suggested for You";
 let sponsored="Sponsored";
+let spons="SSaepnatSommnpogdsnosroeredtdt";
 
 window.addEventListener('scroll', () => {
     setTimeout(hideAds);
@@ -18,12 +19,15 @@ function hideAds(){
     let feed=document.querySelector(`[role="feed"]`);
     let units=feed.querySelectorAll(`[data-pagelet^="FeedUnit"]`);
     for(let u of units){
-        let label=u.querySelector(`[aria-label=${sponsored}]`);
+        //let label=u.querySelector(`[aria-label=${sponsored}]`);
+        let labels=u.querySelectorAll("span a");
+        let button=u.querySelector(`[role=button]`);
         let inner=u.innerText;
-        if (inner.includes(suggested) || (label && label.innerText.length))
+        //(label && label.innerText.length)
+        if (inner.includes(suggested) || (labels[labels.length-1].innerText.replace(/\s/g,'')==spons) || (button.innerText.includes(sponsored)))
         {
-            //u.remove();
-            u.style.opacity=0.15;
+            u.remove();
+            //u.style.opacity=0.1;
         }
     }
 }
