@@ -23,10 +23,17 @@ function hideAds(){
         let button=u.querySelector(`[role=button]`);
         let inner=u.innerText;
         //(label && label.innerText.length)
-        if (inner.includes(suggested) || label?.length==30 || (button.innerText.includes(sponsored)))
+        if (inner.includes(suggested) || stringContainLetters(label ? label : "", sponsored) || (button.innerText.includes(sponsored)))
         {
-            u.remove();
-            //u.style.opacity=0.1;
+            //u.remove();
+            u.style.opacity=0.1;
         }
     }
+}
+
+
+function stringContainLetters(source, check) {
+  return check.split('').every(function(letter) {
+      return source.indexOf(letter) != -1;
+    });
 }
